@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporary Title</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<style id="myStyles">
+    .bar1 {
+        width: 0%;
+        z-index: -1;
+    }
+
+    .bar2 {
+        width: 0%;
+        z-index: -1;
+}
+</style>
+
+<body>
+
+    <div id="game">
+
+        <div id="titlescreen" class="pane">
+            <p>Arcade Foosball</p>
+            <p>Alpha Build 0.0.2</p>
+            <button class="pane-nav" onclick="showPane(1,0);">Click to Begin...</button>
+        </div>
+
+        <div id="players" class="pane" hidden>
+
+            <input id="a" class="player" type="checkbox" value="Arek">
+            <label for="a" class="players">Arek</label>
+
+            <input id="b" class="player" type="checkbox" value="Daniel">
+            <label for="b" class="players">Daniel</label>
+
+            <input id="c" class="player" type="checkbox" value="Marcin">
+            <label for="c" class="players">Marcin</label>
+
+            <input id="d" class="player" type="checkbox" value="Tony">
+            <label for="d" class="players">Tony</label>
+
+            <div class="controls">
+                <button class="pane-nav" onclick="showPane(0,1);">Reset</button>
+                <button class="pane-nav" onclick="showPane(0,1);">Previous</button>
+                <button class="pane-nav" onclick="showPane(2,1);">Next</button>
+            </div>
+
+        </div>
+
+        <div id="select-first" class="pane" hidden>
+
+            <p id="vs"></p>
+            <p id="first"></p>
+
+            <div class="controls">
+                <button class="pane-nav" onclick="showPane(0,2);">Reset</button>
+                <button class="pane-nav" onclick="showPane(1,2);">Previous</button>
+                <button class="pane-nav" onclick="showPane(3,2);">Next</button>
+            </div>
+
+        </div>
+
+        <div id="select-char" class="pane" hidden>
+
+            <label>
+                <input type="radio" name="test" value="attacker" onclick="diffChar();">
+                <img src="images/red.png">
+            </label>
+            <label>
+                <input type="radio" name="test" value="enchantress" onclick="diffChar();">
+                <img src="images/blue.png">
+            </label>
+            <label>
+                <input type="radio" name="test" value="trickster" onclick="diffChar();">
+                <img src="images/green.png">
+            </label>
+
+            <label>
+                <input type="radio" name="test" value="wall" onclick="diffChar();">
+                <img src="images/yellow.png">
+            </label>
+            <label>
+                <input type="radio" name="test" value="random" onclick="diffChar('r1');">
+                <img src="images/question.png">
+            </label>
+
+            <p> ------------------</p>
+
+            <label>
+                <input type="radio" name="test2" value="attacker" onclick="diffChar();">
+                <img src="images/red.png">
+            </label>
+            <label>
+                <input type="radio" name="test2" value="enchantress" onclick="diffChar();">
+                <img src="images/blue.png">
+            </label>
+            <label>
+                <input type="radio" name="test2" value="trickster" onclick="diffChar();">
+                <img src="images/green.png">
+            </label>
+
+            <label>
+                <input type="radio" name="test2" value="wall" onclick="diffChar();">
+                <img src="images/yellow.png">
+            </label>
+            <label>
+                <input type="radio" name="test2" value="random" onclick="diffChar('r2');">
+                <img src="images/question.png">
+            </label>
+
+            <div class="controls">
+                <button class="pane-nav" onclick="showPane(0,3);">Reset</button>
+                <button class="pane-nav" onclick="showPane(2,3);">Previous</button>
+                <button class="pane-nav" onclick="showPane(4,3);">Next</button>
+            </div>
+
+        </div>
+
+        <div id="select-settings" class="pane" hidden>
+
+            <p>This is where the settings will go.</p>>
+
+            <div class="controls">
+                <button class="pane-nav" onclick="showPane(0);">Reset</button>
+                <button class="pane-nav" onclick="showPane(3,4);">Previous</button>
+                <button class="pane-nav" onclick="showPane(5,4);">Start</button>
+            </div>
+
+        </div>
+
+        <div id="playing-field" class="pane" hidden>
+            <div id="player1">
+                <p id="p1Level">Level 1</p>
+                <div class="xp">
+                    <div class="xp-down" onclick="addXP(this.parentNode.parentNode.id,'.bar1',-1);"><img src="images/minus.svg"></div>
+                    <div class="xp-container">
+                        0/10
+                        <div class="xp-bar bar1"></div>
+                      </div>
+                    <div class="xp-up" onclick="addXP(this.parentNode.parentNode.id,'.bar1',1);"><img src="images/plus.svg"></div>
+                </div>
+                <div class="level-1"></div>
+                <!--<div class="level-2"></div>
+                <div class="level-3"></div>-->
+                <div class="level-4"></div>
+                <div class="level-5"></div>
+                <div class="level-6"></div>
+            </div>
+
+            <div id="score">
+                <div id="p1Goals" class="goals" onclick=setupScore(1,0)></div>
+                <div id="pauseAll">Timer Goes Here</div>
+                <div id="p2Goals" class="goals" onclick=setupScore(0,1)></div>
+            </div>
+
+            <div id="player2">
+                <div class="level-1"></div>
+                <!--<div class="level-2"></div>
+                <div class="level-3"></div>-->
+                <div class="level-4"></div>
+                <div class="level-5"></div>
+                <div class="level-6"></div>
+                <div class="xp">
+                    <div class="xp-down" onclick="addXP(this.parentNode.parentNode.id,'.bar2',-1);"><img src="images/minus.svg"></div>
+                    <div class="xp-container">
+                        0/10
+                        <div class="xp-bar bar2"></div>
+                      </div>
+                    <div class="xp-up" onclick="addXP(this.parentNode.parentNode.id,'.bar2',1);"><img src="images/plus.svg"></div>
+                </div>
+                <p id="p2Level">Level 2</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
