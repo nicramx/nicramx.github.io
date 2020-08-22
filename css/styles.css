@@ -1,0 +1,297 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    color: #435757;
+    background: radial-gradient(#fff, #dac4cd);
+    font: 1.4em/1 'Noto Sans', sans-serif;
+}
+
+#game {
+    position: absolute;
+    width: 950px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+input {
+    position: absolute;
+    left: -9999px;
+}
+
+.controls {
+    text-align: center;
+}
+
+button.pane-nav {
+    width: 100px;
+    height: 40px;
+    border: 3px solid #fff;
+    background-color: #6a8494;
+    color: #fff;
+}
+
+label.players {
+    display: block;
+    position: relative;
+    width: 300px;
+    margin: 10px auto;
+    padding: 15px 30px 15px 62px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #6a8494;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s, box-shadow .2s;
+}
+
+label.players::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: 32px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    transition: background-color .2s;
+}
+
+label.players:hover,
+input:focus+label,
+button.pane-nav:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+
+input:checked+label,
+button.pane-nav:focus {
+    background-color: #ab576c;
+}
+
+input:checked+label::before {
+    background-color: #fff;
+}
+
+/* HIDE RADIO */
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio]+img {
+    cursor: pointer;
+}
+
+[type=radio]:hover+img:not(.disable) {
+    outline: 2px solid #eecaca;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked+img:not(.disable) {
+    outline: 2px solid #f00;
+}
+
+.greyscaled {
+    -webkit-filter: brightness(1.1) grayscale(1) opacity(.7);
+    -moz-filter: brightness(1.1) grayscale(1) opacity(.7);
+    filter: brightness(1.1) grayscale(1) opacity(.7);
+}
+
+.xp {
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align:center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin: 5px auto;
+    width: 500px;
+    height: 50px;
+}
+
+.xp-container,
+.xp-up,
+.xp-down {
+    display: inline-block;
+    margin: 5px;
+    height: 40px;
+    color: #fff;
+}
+
+.xp-container {
+    -webkit-text-stroke: 1px black;
+    -webkit-text-fill-color: white;
+    font-size:36px;
+    height: 40px;
+    width: 400px;
+    border: 2px solid #000;
+}
+
+.xp-bar {
+    position: relative;
+    top: -36px;
+    left: 0px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 36px;
+
+    text-align: right;
+    color: #fff;
+
+}
+
+.xp-up,
+.xp-down {
+    width: 40px;
+}
+
+.xp-up img:hover,
+.xp-down img:hover {
+    cursor: pointer;
+}
+
+.xp-up img,
+.xp-down img {
+    display: block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+div[class^=level] {
+    font: #fff;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    color: #fff;
+    position: relative;
+
+}
+
+div[class^=level] img {
+    width: 146px;
+    height: 146px;
+    border: 2px solid #000;
+    border-radius: 73px;
+}
+
+div[class^=level] img:hover {
+    cursor: pointer;
+}
+
+
+div[class^=base-timer] {
+    position: absolute;
+    top: -2px;
+    left: 0px;
+    width: 152px;
+    height: 152px;
+}
+
+svg[class^=base-timer__svg] {
+    transform: scaleX(-1);
+}
+
+g[class^=base-timer__circle] {
+    fill: none;
+    stroke: none;
+}
+
+circle[class^=base-timer__path-elapsed] {
+    stroke-width: 7px;
+    stroke: grey;
+}
+
+path[class^=base-timer__path-remaining] {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+    outline: 3px solid #000;
+}
+
+path.green {
+    color: rgb(65, 184, 131);
+}
+
+path.orange {
+    color: orange;
+}
+
+path.red {
+    color: red;
+}
+
+span[class^=base-timer__label] {
+    -webkit-text-stroke: 1px black;
+    -webkit-text-fill-color: white;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+.attacker {
+    background-color: #f69679;
+}
+
+.enchantress {
+    background-color: #6dcff6;
+}
+
+.trickster {
+    background-color: #a3d39c;
+}
+
+.wall {
+    background-color: #fff799;
+}
+
+#score{
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    text-align:center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin: 5px auto;
+}
+
+#score div{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    display: inline-block;
+}
+
+.goals {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 50px;
+    cursor: pointer;
+}
